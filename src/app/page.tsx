@@ -31,11 +31,10 @@ export default function Home() {
             </svg>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent mb-4">
-            Rent Payment Portal
+            683 Washington St - APT 5
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Manage your shared living expenses with ease. Select a roommate to
-            view their payment details and manage rent payments.
+            Pay your rent here.
           </p>
         </div>
 

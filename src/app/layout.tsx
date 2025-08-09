@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rent Payment Portal",
-  description: "A simple portal for managing roommate rent payments",
+  title: "683 Washington St - APT 5",
+  description: "Pay your rent here",
 };
 
 export default function RootLayout({

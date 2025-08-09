@@ -12,35 +12,6 @@ export async function GET() {
     const roommates = getAllRoommates();
 
     for (const roommate of roommates) {
-      const paymentLink = `${BASE_URL}/roommate/${roommate.id}`;
-
-      // Determine avatar: image URL or initials
-      let avatarHTML = "";
-      if (roommate.image) {
-        avatarHTML = `
-          <img src="${roommate.image}" alt="${roommate.name}"
-            style="width:64px;height:64px;border-radius:50%;object-fit:cover;
-                   border:3px solid rgba(255,255,255,0.8);box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
-        `;
-      } else {
-        const initials = roommate.name
-          .split(" ")
-          .map((n) => n[0])
-          .join("");
-        avatarHTML = `
-          <div style="
-            width:64px;height:64px;border-radius:50%;
-            background:linear-gradient(to bottom right, #3b82f6, #4f46e5);
-            display:flex;align-items:center;justify-content:center;
-            font-weight:bold;font-size:20px;color:white;
-            border:3px solid rgba(255,255,255,0.8);
-            box-shadow:0 4px 12px rgba(0,0,0,0.15);
-          ">
-            ${initials}
-          </div>
-        `;
-      }
-
       await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
         to: roommate.email,
@@ -101,7 +72,7 @@ export async function GET() {
   }
   .button {
     display: inline-block;
-    background: linear-gradient(to right, #3b82f6, #4f46e5);
+    background: linear-gradient(to right, #60a5fa, #6366f1); /* softer blue gradient */
     color: white !important;
     text-decoration: none;
     padding: 12px 20px;
@@ -121,17 +92,14 @@ export async function GET() {
   <div class="container">
     <div class="card">
       <div class="header">
-        <div class="avatar-wrapper">
-          ${avatarHTML}
-        </div>
         <h1>Rent Reminder</h1>
       </div>
       <div class="content">
         <p>Hi ${roommate.name},</p>
-        <p>This is your friendly reminder that rent is due this month.</p>
+        <p>This is your friendly reminder that your rent is due this month.</p>
         <div class="amount">Total Due: $${roommate.amount}</div>
         <p>
-          <a href="${paymentLink}" class="button">
+          <a href="${BASE_URL}" class="button">
             Pay Now
           </a>
         </p>

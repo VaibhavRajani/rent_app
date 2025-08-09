@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { getAllRoommates } from "@/utils/roommateUtils";
+import { privateRoommates } from "@/data/roommates";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -9,7 +9,7 @@ const BASE_URL = "https://rent683.vercel.app/";
 
 export async function GET() {
   try {
-    const roommates = getAllRoommates();
+    const roommates = privateRoommates;
 
     for (const roommate of roommates) {
       await resend.emails.send({

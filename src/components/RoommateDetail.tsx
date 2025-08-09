@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Roommate } from "@/types/roommate";
+import { PublicRoommate } from "@/types/roommate";
 import VenmoButton from "./VenmoButton";
 
 interface RoommateDetailProps {
-  roommate: Roommate;
+  roommate: PublicRoommate;
 }
 
 export default function RoommateDetail({ roommate }: RoommateDetailProps) {

@@ -1,12 +1,12 @@
 "use client";
 
-import { Roommate } from "@/types/roommate";
+import { PublicRoommate } from "@/types/roommate";
 import { VENMO_CONFIG } from "@/config/venmo";
 import { generateVenmoLink, generateVenmoWebLink } from "@/utils/venmoUtils";
 import Image from "next/image";
 
 interface VenmoButtonProps {
-  roommate: Roommate;
+  roommate: PublicRoommate;
   className?: string;
   variant?: "primary" | "secondary";
 }

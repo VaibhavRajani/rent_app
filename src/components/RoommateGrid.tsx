@@ -1,10 +1,10 @@
 "use client";
 
-import { Roommate } from "@/types/roommate";
+import { PublicRoommate } from "@/types/roommate";
 import RoommateCard from "./RoommateCard";
 
 interface RoommateGridProps {
-  roommates: Roommate[];
+  roommates: PublicRoommate[];
 }
 
 export default function RoommateGrid({ roommates }: RoommateGridProps) {

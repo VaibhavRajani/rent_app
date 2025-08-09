@@ -1,4 +1,4 @@
-import { Roommate } from "@/types/roommate";
+import { PublicRoommate } from "@/types/roommate";
 
 // Helper function to clean username (remove @ if present)
 function cleanVenmoUsername(username: string): string {
@@ -6,7 +6,7 @@ function cleanVenmoUsername(username: string): string {
 }
 
 export function generateVenmoLink(
-  roommate: Roommate,
+  roommate: PublicRoommate,
   venmoUsername: string
 ): string {
   const amount = roommate.amount;
@@ -22,7 +22,7 @@ export function generateVenmoLink(
 }
 
 export function generateVenmoWebLink(
-  roommate: Roommate,
+  roommate: PublicRoommate,
   venmoUsername: string
 ): string {
   const amount = roommate.amount;
@@ -36,7 +36,7 @@ export function generateVenmoWebLink(
 }
 
 export function openVenmoPayment(
-  roommate: Roommate,
+  roommate: PublicRoommate,
   venmoUsername: string
 ): void {
   const venmoLink = generateVenmoLink(roommate, venmoUsername);

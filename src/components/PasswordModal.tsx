@@ -2,14 +2,17 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Roommate } from "@/types/roommate";
-import { validatePassword, formatPassword } from "@/utils/passwordUtils";
+import { PublicRoommate } from "@/types/roommate";
+import {
+  formatPassword,
+  validatePasswordServerSide,
+} from "@/utils/passwordUtils";
 
 interface PasswordModalProps {
-  roommate: Roommate;
+  roommate: PublicRoommate;
   isOpen: boolean;
   onClose: () => void;
-  onSuccess: () => void;
+  onSuccess: (roommate: PublicRoommate) => void;
 }
 
 export default function PasswordModal({
@@ -35,26 +38,34 @@ export default function PasswordModal({
     setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    // Simulate loading
-    setTimeout(() => {
-      if (validatePassword(roommate, password)) {
+    try {
+      const result = await validatePasswordServerSide(roommate.id, password);
+
+      if (result.success && result.roommate) {
         setIsLoading(false);
-        onSuccess();
+        onSuccess(result.roommate);
         setPassword("");
       } else {
         setIsLoading(false);
-        setError("Incorrect password. Hint: DD/MM format");
+        setError(result.error || "Incorrect password. Hint: DD/MM format");
         setPassword("");
         if (inputRef.current) {
           inputRef.current.focus();
         }
       }
-    }, 500);
+    } catch (error) {
+      setIsLoading(false);
+      setError("Network error. Please try again.");
+      setPassword("");
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -113,7 +124,7 @@ export default function PasswordModal({
                 className="w-full h-full object-cover"
               />
             ) : (
-              <span className="text-xl font-bold theme-text">
+              <span className="text-xl font-bold text-white">
                 {roommate.name
                   .split(" ")
                   .map((n) => n[0])

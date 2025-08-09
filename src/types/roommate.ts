@@ -1,10 +1,17 @@
-export interface Roommate {
-  email: string | string[];
+// Public roommate data (safe to expose to client)
+export interface PublicRoommate {
   id: string;
   name: string;
   amount: number;
-  venmoUsername?: string; // Your Venmo username
-  venmoNote?: string; // Default note for Venmo payments
-  image?: string; // URL for roommate's photo
-  birthday?: string; // Birthday in DD/MM format for password
+  venmoNote: string;
+  image?: string;
 }
+
+// Private roommate data (server-side only)
+export interface PrivateRoommate extends PublicRoommate {
+  email: string;
+  birthday: string; // DD/MM format
+}
+
+// Full roommate data (for internal use)
+export interface Roommate extends PrivateRoommate {}

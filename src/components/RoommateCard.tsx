@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Roommate } from "@/types/roommate";
+import { PublicRoommate } from "@/types/roommate";
 import PasswordModal from "./PasswordModal";
 
 interface RoommateCardProps {
-  roommate: Roommate;
+  roommate: PublicRoommate;
 }
 
 export default function RoommateCard({ roommate }: RoommateCardProps) {
@@ -15,13 +15,12 @@ export default function RoommateCard({ roommate }: RoommateCardProps) {
   const router = useRouter();
 
   const handleViewDetails = () => {
-    // always prompt
     setIsPasswordModalOpen(true);
   };
 
-  const handlePasswordSuccess = () => {
+  const handlePasswordSuccess = (authenticatedRoommate: PublicRoommate) => {
     setIsPasswordModalOpen(false);
-    router.push(`/roommate/${roommate.id}`);
+    router.push(`/roommate/${authenticatedRoommate.id}`);
   };
 
   return (
@@ -44,7 +43,7 @@ export default function RoommateCard({ roommate }: RoommateCardProps) {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-2xl font-bold theme-text">
+                <span className="text-2xl font-bold text-white">
                   {roommate.name
                     .split(" ")
                     .map((n) => n[0])

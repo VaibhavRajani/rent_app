@@ -2,6 +2,7 @@ import { Roommate } from "@/types/roommate";
 
 export const roommates: Roommate[] = [
   {
+    email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-1",
     name: "Batul Khambata",
     amount: 800,
@@ -11,6 +12,7 @@ export const roommates: Roommate[] = [
     birthday: "29/11", // November 29th
   },
   {
+    email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-2",
     name: "Harsh Sangani",
     amount: 750,
@@ -20,6 +22,7 @@ export const roommates: Roommate[] = [
     birthday: "01/11", // November 1st
   },
   {
+    email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-3",
     name: "Ronak Shah",
     amount: 850,
@@ -29,6 +32,7 @@ export const roommates: Roommate[] = [
     birthday: "09/04", // April 9th
   },
   {
+    email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-4",
     name: "Aryan Mehta",
     amount: 700,
@@ -38,6 +42,7 @@ export const roommates: Roommate[] = [
     birthday: "03/09", // September 3rd
   },
   {
+    email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-5",
     name: "Poojan Ajmera",
     amount: 900,

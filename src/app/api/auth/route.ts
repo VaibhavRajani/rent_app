@@ -7,13 +7,19 @@ let privateRoommates: PrivateRoommate[] = [];
 // Function to load roommates data
 async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
   try {
-    // Use dynamic import for ES modules
+    // Use a more reliable import approach
     const roommatesModule = await import("@/data/roommates");
-    return roommatesModule.privateRoommates || [];
-  } catch {
-    console.warn(
-      "Private roommates data not found. Please create src/data/roommates.ts from the template."
-    );
+    const roommates = roommatesModule.privateRoommates;
+
+    if (!roommates || !Array.isArray(roommates)) {
+      console.error("Invalid roommates data structure");
+      return [];
+    }
+
+    return roommates;
+  } catch (error) {
+    console.error("Failed to load roommates data:", error);
+    // Return empty array if import fails
     return [];
   }
 }
@@ -49,12 +55,22 @@ export async function POST(request: NextRequest) {
     const expectedPassword = roommate.birthday;
     const expectedPasswordWithoutSlash = expectedPassword.replace("/", "");
 
+    // Also handle the case where password might be formatted (digits only)
+    const formattedPassword = password.replace(/\D/g, ""); // Remove non-digits
+
     const isValidPassword =
       password === expectedPassword ||
-      password === expectedPasswordWithoutSlash;
+      password === expectedPasswordWithoutSlash ||
+      formattedPassword === expectedPasswordWithoutSlash;
 
     if (!isValidPassword) {
-      return NextResponse.json({ error: "Invalid password" }, { status: 401 });
+      return NextResponse.json(
+        {
+          error: "Invalid password",
+          hint: `Expected: ${expectedPassword} or ${expectedPasswordWithoutSlash}, Received: ${password}`,
+        },
+        { status: 401 }
+      );
     }
 
     // Return success without exposing sensitive data

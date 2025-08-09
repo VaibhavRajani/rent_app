@@ -1,0 +1,310 @@
+/* Theme System CSS - Independent of Tailwind */
+
+/* Base theme variables */
+:root {
+  /* Color tokens */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #64748b;
+  --secondary-foreground: #f1f5f9;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --ring: #3b82f6;
+  --radius: 0.75rem;
+
+  /* Additional semantic colors */
+  --background-secondary: #ffffff;
+  --background-tertiary: #f1f5f9;
+  --foreground-secondary: #334155;
+  --foreground-tertiary: #64748b;
+  --primary-hover: #2563eb;
+  --secondary-hover: #475569;
+  --accent-hover: #2563eb;
+  --border-secondary: #cbd5e1;
+  --input-border: #cbd5e1;
+
+  /* Status colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+
+  /* Venmo colors */
+  --venmo-primary: #008cff;
+  --venmo-secondary: #0066cc;
+  --venmo-hover: #0077e6;
+  --venmo-hover-secondary: #0055b3;
+}
+
+/* Dark mode theme variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #020617;
+    --foreground: #f8fafc;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #64748b;
+    --secondary-foreground: #1e293b;
+    --accent: #0ea5e9;
+    --accent-foreground: #ffffff;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+    --input: #1e293b;
+    --ring: #3b82f6;
+
+    /* Additional semantic colors for dark mode */
+    --background-secondary: #1e293b;
+    --background-tertiary: #334155;
+    --foreground-secondary: #cbd5e1;
+    --foreground-tertiary: #94a3b8;
+    --primary-hover: #60a5fa;
+    --secondary-hover: #94a3b8;
+    --accent-hover: #60a5fa;
+    --border-secondary: #475569;
+    --input-border: #475569;
+
+    /* Status colors for dark mode */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #60a5fa;
+  }
+}
+
+/* Theme-aware styles */
+[data-theme="light"] {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #64748b;
+  --secondary-foreground: #f1f5f9;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --ring: #3b82f6;
+  --background-secondary: #ffffff;
+  --background-tertiary: #f1f5f9;
+  --foreground-secondary: #334155;
+  --foreground-tertiary: #64748b;
+  --primary-hover: #2563eb;
+  --secondary-hover: #475569;
+  --accent-hover: #2563eb;
+  --border-secondary: #cbd5e1;
+  --input-border: #cbd5e1;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+  --venmo-primary: #008cff;
+  --venmo-secondary: #0066cc;
+  --venmo-hover: #0077e6;
+  --venmo-hover-secondary: #0055b3;
+}
+
+[data-theme="dark"] {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #64748b;
+  --secondary-foreground: #1e293b;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --background-secondary: #1e293b;
+  --background-tertiary: #334155;
+  --foreground-secondary: #cbd5e1;
+  --foreground-tertiary: #94a3b8;
+  --primary-hover: #60a5fa;
+  --secondary-hover: #94a3b8;
+  --accent-hover: #60a5fa;
+  --border-secondary: #475569;
+  --input-border: #475569;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+  --venmo-primary: #008cff;
+  --venmo-secondary: #0066cc;
+  --venmo-hover: #0077e6;
+  --venmo-hover-secondary: #0055b3;
+}
+
+/* Theme utility classes */
+.theme-bg {
+  background-color: var(--background);
+}
+
+.theme-bg-secondary {
+  background-color: var(--background-secondary);
+}
+
+.theme-bg-tertiary {
+  background-color: var(--background-tertiary);
+}
+
+.theme-text {
+  color: var(--foreground);
+}
+
+.theme-text-secondary {
+  color: var(--foreground-secondary);
+}
+
+.theme-text-tertiary {
+  color: var(--foreground-tertiary);
+}
+
+.theme-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.theme-primary-text {
+  color: var(--primary);
+}
+
+.theme-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.theme-secondary-text {
+  color: var(--secondary);
+}
+
+.theme-accent {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.theme-accent-text {
+  color: var(--accent);
+}
+
+.theme-muted {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.theme-muted-text {
+  color: var(--muted-foreground);
+}
+
+.theme-border {
+  border-color: var(--border);
+}
+
+.theme-border-secondary {
+  border-color: var(--border-secondary);
+}
+
+.theme-ring {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+/* Hover states */
+.hover\:theme-bg:hover {
+  background-color: var(--background);
+}
+
+.hover\:theme-bg-secondary:hover {
+  background-color: var(--background-secondary);
+}
+
+.hover\:theme-bg-tertiary:hover {
+  background-color: var(--background-tertiary);
+}
+
+.hover\:theme-primary-text:hover {
+  color: var(--primary);
+}
+
+.hover\:theme-text-secondary:hover {
+  color: var(--foreground-secondary);
+}
+
+.hover\:theme-text-tertiary:hover {
+  color: var(--foreground-tertiary);
+}
+
+/* Venmo specific classes */
+.theme-venmo-primary {
+  background: linear-gradient(
+    to right,
+    var(--venmo-primary),
+    var(--venmo-secondary)
+  );
+  color: white;
+}
+
+.theme-venmo-primary:hover {
+  background: linear-gradient(
+    to right,
+    var(--venmo-hover),
+    var(--venmo-hover-secondary)
+  );
+}
+
+/* Status color classes */
+.theme-success {
+  color: var(--success);
+}
+
+.theme-warning {
+  color: var(--warning);
+}
+
+.theme-error {
+  color: var(--error);
+}
+
+.theme-info {
+  color: var(--info);
+}
+
+/* Additional utility classes for better theme support */
+.theme-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.theme-shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.theme-shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Focus states */
+.focus\:theme-ring:focus {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+/* Transition utilities */
+.theme-transition {
+  transition: all 0.3s ease;
+}
+
+.theme-transition-colors {
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease;
+}

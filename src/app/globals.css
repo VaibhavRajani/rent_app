@@ -1,20 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --secondary: #64748b;
-  --secondary-foreground: #f1f5f9;
-  --accent: #0ea5e9;
-  --accent-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  --input: #ffffff;
-  --ring: #3b82f6;
-  --radius: 0.75rem;
+  /* Color tokens - using !important to override Tailwind */
+  --background: #f8fafc !important;
+  --foreground: #0f172a !important;
+  --primary: #3b82f6 !important;
+  --primary-foreground: #ffffff !important;
+  --secondary: #64748b !important;
+  --secondary-foreground: #f1f5f9 !important;
+  --accent: #0ea5e9 !important;
+  --accent-foreground: #ffffff !important;
+  --muted: #f1f5f9 !important;
+  --muted-foreground: #64748b !important;
+  --border: #e2e8f0 !important;
+  --input: #ffffff !important;
+  --ring: #3b82f6 !important;
+  --radius: 0.75rem !important;
+
+  /* Additional semantic colors */
+  --background-secondary: #ffffff !important;
+  --background-tertiary: #f1f5f9 !important;
+  --foreground-secondary: #334155 !important;
+  --foreground-tertiary: #64748b !important;
+  --primary-hover: #2563eb !important;
+  --secondary-hover: #475569 !important;
+  --accent-hover: #2563eb !important;
+  --border-secondary: #cbd5e1 !important;
+  --input-border: #cbd5e1 !important;
+
+  /* Status colors */
+  --success: #10b981 !important;
+  --warning: #f59e0b !important;
+  --error: #ef4444 !important;
+  --info: #3b82f6 !important;
+
+  /* Venmo colors */
+  --venmo-primary: #008cff !important;
+  --venmo-secondary: #0066cc !important;
+  --venmo-hover: #0077e6 !important;
+  --venmo-hover-secondary: #0055b3 !important;
 }
 
 @theme inline {
@@ -37,25 +61,109 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020617;
-    --foreground: #f8fafc;
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
-    --secondary: #64748b;
-    --secondary-foreground: #1e293b;
-    --accent: #0ea5e9;
-    --accent-foreground: #ffffff;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --input: #1e293b;
-    --ring: #3b82f6;
+    --background: #020617 !important;
+    --foreground: #f8fafc !important;
+    --primary: #3b82f6 !important;
+    --primary-foreground: #ffffff !important;
+    --secondary: #64748b !important;
+    --secondary-foreground: #1e293b !important;
+    --accent: #0ea5e9 !important;
+    --accent-foreground: #ffffff !important;
+    --muted: #1e293b !important;
+    --muted-foreground: #94a3b8 !important;
+    --border: #334155 !important;
+    --input: #1e293b !important;
+    --ring: #3b82f6 !important;
+
+    /* Additional semantic colors for dark mode */
+    --background-secondary: #1e293b !important;
+    --background-tertiary: #334155 !important;
+    --foreground-secondary: #cbd5e1 !important;
+    --foreground-tertiary: #94a3b8 !important;
+    --primary-hover: #60a5fa !important;
+    --secondary-hover: #94a3b8 !important;
+    --accent-hover: #60a5fa !important;
+    --border-secondary: #475569 !important;
+    --input-border: #475569 !important;
+
+    /* Status colors for dark mode */
+    --success: #10b981 !important;
+    --warning: #f59e0b !important;
+    --error: #ef4444 !important;
+    --info: #60a5fa !important;
   }
 }
 
+/* Theme-aware styles */
+[data-theme="light"] {
+  --background: #f8fafc !important;
+  --foreground: #0f172a !important;
+  --primary: #3b82f6 !important;
+  --primary-foreground: #ffffff !important;
+  --secondary: #64748b !important;
+  --secondary-foreground: #f1f5f9 !important;
+  --accent: #0ea5e9 !important;
+  --accent-foreground: #ffffff !important;
+  --muted: #f1f5f9 !important;
+  --muted-foreground: #64748b !important;
+  --border: #e2e8f0 !important;
+  --input: #ffffff !important;
+  --ring: #3b82f6 !important;
+  --background-secondary: #ffffff !important;
+  --background-tertiary: #f1f5f9 !important;
+  --foreground-secondary: #334155 !important;
+  --foreground-tertiary: #64748b !important;
+  --primary-hover: #2563eb !important;
+  --secondary-hover: #475569 !important;
+  --accent-hover: #2563eb !important;
+  --border-secondary: #cbd5e1 !important;
+  --input-border: #cbd5e1 !important;
+  --success: #10b981 !important;
+  --warning: #f59e0b !important;
+  --error: #ef4444 !important;
+  --info: #3b82f6 !important;
+  --venmo-primary: #008cff !important;
+  --venmo-secondary: #0066cc !important;
+  --venmo-hover: #0077e6 !important;
+  --venmo-hover-secondary: #0055b3 !important;
+}
+
+[data-theme="dark"] {
+  --background: #020617 !important;
+  --foreground: #f8fafc !important;
+  --primary: #3b82f6 !important;
+  --primary-foreground: #ffffff !important;
+  --secondary: #64748b !important;
+  --secondary-foreground: #1e293b !important;
+  --accent: #0ea5e9 !important;
+  --accent-foreground: #ffffff !important;
+  --muted: #1e293b !important;
+  --muted-foreground: #94a3b8 !important;
+  --border: #334155 !important;
+  --input: #1e293b !important;
+  --ring: #3b82f6 !important;
+  --background-secondary: #1e293b !important;
+  --background-tertiary: #334155 !important;
+  --foreground-secondary: #cbd5e1 !important;
+  --foreground-tertiary: #94a3b8 !important;
+  --primary-hover: #60a5fa !important;
+  --secondary-hover: #94a3b8 !important;
+  --accent-hover: #60a5fa !important;
+  --border-secondary: #475569 !important;
+  --input-border: #475569 !important;
+  --success: #10b981 !important;
+  --warning: #f59e0b !important;
+  --error: #ef4444 !important;
+  --info: #60a5fa !important;
+  --venmo-primary: #008cff !important;
+  --venmo-secondary: #0066cc !important;
+  --venmo-hover: #0077e6 !important;
+  --venmo-hover-secondary: #0055b3 !important;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--background) !important;
+  color: var(--foreground) !important;
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
@@ -65,14 +173,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--muted);
+  background: var(--muted) !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary);
+  background: var(--secondary) !important;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--primary) !important;
 }

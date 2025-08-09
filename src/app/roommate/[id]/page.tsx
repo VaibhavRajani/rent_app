@@ -17,7 +17,7 @@ export default async function RoommatePage({ params }: RoommatePageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen theme-bg">
       <RoommateDetail roommate={roommate} />
     </div>
   );

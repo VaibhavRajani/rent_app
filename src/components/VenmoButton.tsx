@@ -31,8 +31,8 @@ export default function VenmoButton({
     "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1";
   const variantClasses =
     variant === "primary"
-      ? "bg-gradient-to-r from-[#008CFF] to-[#0066CC] text-white hover:from-[#0077E6] hover:to-[#0055B3]"
-      : "bg-white/70 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300 hover:bg-white/90 dark:hover:bg-slate-700/90 border border-white/20";
+      ? "theme-venmo-primary"
+      : "theme-bg-secondary theme-text-secondary hover:theme-bg-tertiary border theme-border";
 
   return (
     <button

@@ -26,7 +26,7 @@ export async function GET() {
 <style>
   body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f8fafc;
+    background-color: var(--background, #f8fafc);
     margin: 0;
     padding: 0;
   }
@@ -42,7 +42,7 @@ export async function GET() {
     overflow: hidden;
   }
   .header {
-    background: linear-gradient(to right, #3b82f6, #4f46e5);
+    background: linear-gradient(to right, var(--primary, #3b82f6), var(--primary-hover, #4f46e5));
     color: white;
     text-align: center;
     padding: 24px;
@@ -57,7 +57,7 @@ export async function GET() {
   }
   .content {
     padding: 24px;
-    color: #1e293b;
+    color: var(--foreground-secondary, #1e293b);
   }
   .content p {
     font-size: 16px;
@@ -67,12 +67,12 @@ export async function GET() {
   .amount {
     font-size: 20px;
     font-weight: bold;
-    color: #0f172a;
+    color: var(--foreground, #0f172a);
     margin-bottom: 24px;
   }
   .button {
     display: inline-block;
-    background: linear-gradient(to right, #60a5fa, #6366f1); /* softer blue gradient */
+    background: linear-gradient(to right, var(--primary, #60a5fa), var(--primary-hover, #6366f1));
     color: white !important;
     text-decoration: none;
     padding: 12px 20px;
@@ -83,7 +83,7 @@ export async function GET() {
   .footer {
     text-align: center;
     font-size: 12px;
-    color: #64748b;
+    color: var(--foreground-tertiary, #64748b);
     padding: 16px;
   }
 </style>

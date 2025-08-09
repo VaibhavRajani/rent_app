@@ -15,13 +15,13 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-12">
+    <div className="min-h-screen theme-bg py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back button */}
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center px-6 py-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm text-slate-700 dark:text-slate-300 rounded-xl hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/20"
+            className="inline-flex items-center px-6 py-3 theme-bg-secondary backdrop-blur-sm theme-text-secondary rounded-xl hover:theme-bg-tertiary transition-all duration-300 shadow-lg hover:shadow-xl theme-border border"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -41,9 +41,9 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
         </div>
 
         {/* Main content card */}
-        <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+        <div className="theme-bg-secondary backdrop-blur-sm rounded-3xl shadow-2xl theme-border border overflow-hidden">
           {/* Header section */}
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-8 text-white relative overflow-hidden">
+          <div className="theme-primary p-8 relative overflow-hidden">
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-6">
@@ -66,10 +66,10 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
                   )}
                 </div>
               </div>
-              <h1 className="text-4xl font-bold text-center mb-2">
+              <h1 className="text-4xl font-bold text-center mb-2 text-white">
                 {roommate.name}
               </h1>
-              <p className="text-blue-100 text-center text-lg">
+              <p className="text-white/80 text-center text-lg">
                 Roommate Payment Details
               </p>
             </div>
@@ -79,12 +79,12 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
           <div className="p-8">
             {/* Amount display */}
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full mb-6">
+              <div className="inline-flex items-center justify-center w-32 h-32 theme-bg-tertiary rounded-full mb-6">
                 <div className="text-center">
-                  <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent">
+                  <p className="text-4xl font-bold theme-primary-text">
                     ${roommate.amount.toLocaleString()}
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                  <p className="text-sm theme-text-secondary mt-1">
                     Monthly Rent
                   </p>
                 </div>
@@ -93,19 +93,19 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
 
             {/* Additional details */}
             <div className="grid grid-cols-1 mb-8">
-              <div className="bg-slate-50 dark:bg-slate-700/50 rounded-2xl p-6">
+              <div className="theme-bg-tertiary rounded-2xl p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                    <p className="text-sm font-medium theme-text-secondary">
                       Due Date
                     </p>
-                    <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                    <p className="text-lg font-semibold theme-text">
                       1st of Every Month
                     </p>
                   </div>
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 theme-primary rounded-full flex items-center justify-center">
                     <svg
-                      className="w-6 h-6 text-blue-600 dark:text-blue-400"
+                      className="w-6 h-6 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

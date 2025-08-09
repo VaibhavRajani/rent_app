@@ -75,7 +75,7 @@ export default function PasswordModal({
 
       {/* Modal */}
       <div
-        className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8 max-w-md w-full mx-4 animate-in zoom-in-95 duration-200"
+        className="relative theme-bg-secondary backdrop-blur-sm rounded-2xl shadow-2xl theme-border border p-8 max-w-md w-full mx-4 animate-in zoom-in-95 duration-200"
         role="dialog"
         aria-labelledby="password-modal-title"
         aria-describedby="password-modal-description"
@@ -83,10 +83,10 @@ export default function PasswordModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full theme-bg-tertiary flex items-center justify-center hover:theme-bg transition-colors"
         >
           <svg
-            className="w-4 h-4"
+            className="w-4 h-4 theme-text-secondary"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -103,7 +103,7 @@ export default function PasswordModal({
         {/* Content */}
         <div className="text-center">
           {/* Avatar */}
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg overflow-hidden">
+          <div className="w-16 h-16 theme-primary rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg overflow-hidden">
             {roommate.image ? (
               <Image
                 src={roommate.image}
@@ -113,7 +113,7 @@ export default function PasswordModal({
                 className="w-full h-full object-cover"
               />
             ) : (
-              <span className="text-xl font-bold text-white">
+              <span className="text-xl font-bold theme-text">
                 {roommate.name
                   .split(" ")
                   .map((n) => n[0])
@@ -124,13 +124,13 @@ export default function PasswordModal({
 
           <h2
             id="password-modal-title"
-            className="text-2xl font-bold text-slate-900 dark:text-white mb-2"
+            className="text-2xl font-bold theme-text mb-2"
           >
             {roommate.name}
           </h2>
           <p
             id="password-modal-description"
-            className="text-slate-600 dark:text-slate-400 mb-6"
+            className="theme-text-secondary mb-6"
           >
             Enter your 4-digit password to view details
           </p>
@@ -145,7 +145,7 @@ export default function PasswordModal({
                 onChange={handlePasswordChange}
                 onKeyDown={handleKeyDown}
                 placeholder="DDMM"
-                className="w-full px-4 py-3 text-center text-2xl font-mono bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 text-center text-2xl font-mono theme-bg-tertiary theme-border border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 theme-text"
                 maxLength={4}
                 autoComplete="off"
               />
@@ -156,8 +156,8 @@ export default function PasswordModal({
                       key={i}
                       className={`w-2 h-2 rounded-full transition-all duration-200 ${
                         i < password.length
-                          ? "bg-blue-500"
-                          : "bg-slate-300 dark:bg-slate-600"
+                          ? "theme-primary"
+                          : "theme-muted-text"
                       }`}
                     />
                   ))}
@@ -167,13 +167,13 @@ export default function PasswordModal({
 
             {/* Error message */}
             {error && (
-              <div className="text-red-500 text-sm animate-in slide-in-from-top-2 duration-200">
+              <div className="theme-error text-sm animate-in slide-in-from-top-2 duration-200">
                 {error}
               </div>
             )}
 
             {/* Hint */}
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-xs theme-text-tertiary">
               💡 Hint: Your birthday in DD/MM format
             </div>
 
@@ -181,7 +181,7 @@ export default function PasswordModal({
             <button
               type="submit"
               disabled={password.length !== 4 || isLoading}
-              className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:-translate-y-1"
+              className="w-full px-6 py-3 theme-primary rounded-xl font-semibold hover:theme-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:-translate-y-1"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">

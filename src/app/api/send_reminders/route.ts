@@ -19,13 +19,25 @@ async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
   }
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend only if API key is available
+let resend: Resend | null = null;
+if (process.env.RESEND_API_KEY) {
+  resend = new Resend(process.env.RESEND_API_KEY);
+}
 
 // Change to your deployed Vercel URL
 const BASE_URL = "https://rent683.vercel.app/";
 
 export async function GET() {
   try {
+    // Check if Resend is configured
+    if (!resend) {
+      return NextResponse.json(
+        { error: "Email service not configured" },
+        { status: 503 }
+      );
+    }
+
     // Load roommates data if not already loaded
     if (privateRoommates.length === 0) {
       privateRoommates = await loadPrivateRoommates();
@@ -42,11 +54,12 @@ export async function GET() {
     const roommates = privateRoommates;
 
     for (const roommate of roommates) {
-      await resend.emails.send({
-        from: "Vaibhav <onboarding@resend.dev>",
-        to: roommate.email,
-        subject: `Rent Due Reminder - ${roommate.name}`,
-        html: `
+      if (resend) {
+        await resend.emails.send({
+          from: "Vaibhav <onboarding@resend.dev>",
+          to: roommate.email,
+          subject: `Rent Due Reminder - ${roommate.name}`,
+          html: `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,7 +156,8 @@ export async function GET() {
 </body>
 </html>
         `,
-      });
+        });
+      }
     }
 
     return NextResponse.json({ status: "ok", sent: roommates.length });

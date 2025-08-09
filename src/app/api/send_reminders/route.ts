@@ -13,7 +13,7 @@ export async function GET() {
 
     for (const roommate of roommates) {
       await resend.emails.send({
-        from: "Acme <onboarding@resend.dev>",
+        from: "Vaibhav <onboarding@resend.dev>",
         to: roommate.email,
         subject: `Rent Due Reminder - ${roommate.name}`,
         html: `

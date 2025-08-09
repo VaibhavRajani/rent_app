@@ -42,7 +42,7 @@ export async function GET() {
       }
 
       await resend.emails.send({
-        from: "Vaibhav Rajani <vaibhav.rajanivit@gmail.com>",
+        from: "Acme <onboarding@resend.dev>",
         to: roommate.email,
         subject: `Rent Due Reminder - ${roommate.name}`,
         html: `

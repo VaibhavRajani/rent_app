@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Roommate } from "@/types/roommate";
 import VenmoButton from "./VenmoButton";
 import PasswordModal from "./PasswordModal";
@@ -99,9 +100,11 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
               <div className="flex items-center justify-center mb-6">
                 <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm overflow-hidden">
                   {roommate.image ? (
-                    <img
+                    <Image
                       src={roommate.image}
                       alt={`${roommate.name}'s photo`}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover rounded-full"
                     />
                   ) : (

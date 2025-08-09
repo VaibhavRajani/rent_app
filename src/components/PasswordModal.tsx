@@ -1,12 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { Roommate } from "@/types/roommate";
-import {
-  validatePassword,
-  formatPassword,
-  getPasswordHint,
-} from "@/utils/passwordUtils";
+import { validatePassword, formatPassword } from "@/utils/passwordUtils";
 
 interface PasswordModalProps {
   roommate: Roommate;
@@ -108,9 +105,11 @@ export default function PasswordModal({
           {/* Avatar */}
           <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg overflow-hidden">
             {roommate.image ? (
-              <img
+              <Image
                 src={roommate.image}
                 alt={`${roommate.name}'s photo`}
+                width={64}
+                height={64}
                 className="w-full h-full object-cover"
               />
             ) : (

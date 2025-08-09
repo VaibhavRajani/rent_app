@@ -3,6 +3,7 @@
 import { Roommate } from "@/types/roommate";
 import { VENMO_CONFIG } from "@/config/venmo";
 import { generateVenmoLink, generateVenmoWebLink } from "@/utils/venmoUtils";
+import Image from "next/image";
 
 interface VenmoButtonProps {
   roommate: Roommate;
@@ -17,13 +18,9 @@ export default function VenmoButton({
 }: VenmoButtonProps) {
   const handleVenmoClick = () => {
     const venmoLink = generateVenmoLink(roommate, VENMO_CONFIG.username);
-
-    // Try to open Venmo app first
     const link = document.createElement("a");
     link.href = venmoLink;
     link.click();
-
-    // Fallback to web version after a short delay
     setTimeout(() => {
       const webLink = generateVenmoWebLink(roommate, VENMO_CONFIG.username);
       window.open(webLink, "_blank", "noopener,noreferrer");
@@ -32,7 +29,6 @@ export default function VenmoButton({
 
   const baseClasses =
     "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1";
-
   const variantClasses =
     variant === "primary"
       ? "bg-gradient-to-r from-[#008CFF] to-[#0066CC] text-white hover:from-[#0077E6] hover:to-[#0055B3]"
@@ -43,11 +39,12 @@ export default function VenmoButton({
       onClick={handleVenmoClick}
       className={`${baseClasses} ${variantClasses} ${className}`}
     >
-      {/* Venmo Icon */}
       <div className="w-5 h-5 mr-2 flex items-center justify-center bg-white/20 rounded-full">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=20&h=20&fit=crop&crop=center"
           alt="Venmo"
+          width={20}
+          height={20}
           className="w-4 h-4 rounded-full object-cover"
         />
       </div>

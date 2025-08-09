@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Roommate } from "@/types/roommate";
 import PasswordModal from "./PasswordModal";
 
@@ -35,9 +36,11 @@ export default function RoommateCard({ roommate }: RoommateCardProps) {
             {/* Avatar */}
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden">
               {roommate.image ? (
-                <img
+                <Image
                   src={roommate.image}
                   alt={`${roommate.name}'s photo`}
+                  width={64}
+                  height={64}
                   className="w-full h-full object-cover"
                 />
               ) : (
@@ -72,9 +75,11 @@ export default function RoommateCard({ roommate }: RoommateCardProps) {
                 className="flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300 bg-slate-100 dark:bg-slate-700/50 rounded-lg py-2 px-4 hover:bg-slate-200 dark:hover:bg-slate-700/70"
               >
                 <span className="text-sm font-medium mr-2">View Details</span>
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=16&h=16&fit=crop&crop=center"
                   alt="Arrow"
+                  width={16}
+                  height={16}
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                 />
               </button>

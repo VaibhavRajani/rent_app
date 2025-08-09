@@ -35,7 +35,7 @@ export const roommates: Roommate[] = [
     email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-4",
     name: "Aryan Mehta",
-    amount: 400,
+    amount: 450,
     venmoNote: "Rent payment - Aryan Mehta",
     image:
       "https://media.licdn.com/dms/image/v2/D4D35AQGHNow6Yuai4w/profile-framedphoto-shrink_800_800/B4DZaE80xZHwAg-/0/1745987259864?e=1755320400&v=beta&t=S0uUvGpt8Q-2xinjYfyPQ9gr40Z9PIyC9DDp_3ZoWt4",
@@ -45,7 +45,7 @@ export const roommates: Roommate[] = [
     email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-5",
     name: "Poojan Ajmera",
-    amount: 400,
+    amount: 450,
     venmoNote: "Rent payment - Poojan Ajmera",
     image:
       "https://media.licdn.com/dms/image/v2/D4D35AQHAth88ZFhMQA/profile-framedphoto-shrink_800_800/B4DZguJjRDHsAk-/0/1753120912860?e=1755320400&v=beta&t=jhCkDX1Soe-R0WJbFtlFA2a160DzEGaBvYqDkZn4JjM",
@@ -65,7 +65,7 @@ export const roommates: Roommate[] = [
     email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-6",
     name: "Aman Shah",
-    amount: 650,
+    amount: 600,
     venmoNote: "Rent payment - Aman Shah",
     image:
       "https://media.licdn.com/dms/image/v2/D4D35AQHAth88ZFhMQA/profile-framedphoto-shrink_800_800/B4DZguJjRDHsAk-/0/1753120912860?e=1755320400&v=beta&t=jhCkDX1Soe-R0WJbFtlFA2a160DzEGaBvYqDkZn4JjM",
@@ -75,7 +75,7 @@ export const roommates: Roommate[] = [
     email: "vaibhav.rajanivit@gmail.com",
     id: "roommate-7",
     name: "Jeet",
-    amount: 650,
+    amount: 600,
     venmoNote: "Rent payment - Jeet",
     image:
       "https://media.licdn.com/dms/image/v2/D4D35AQHAth88ZFhMQA/profile-framedphoto-shrink_800_800/B4DZguJjRDHsAk-/0/1753120912860?e=1755320400&v=beta&t=jhCkDX1Soe-R0WJbFtlFA2a160DzEGaBvYqDkZn4JjM",

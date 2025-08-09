@@ -1,6 +1,7 @@
 import { getAllRoommates } from "@/utils/roommateUtils";
 import RoommateGrid from "@/components/RoommateGrid";
 import ThemeToggle from "@/components/ThemeToggle";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const roommates = getAllRoommates();
@@ -110,6 +111,9 @@ export default function Home() {
           <RoommateGrid roommates={roommates} />
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

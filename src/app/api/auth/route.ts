@@ -7,8 +7,8 @@ let privateRoommates: PrivateRoommate[] = [];
 // Function to load roommates data
 async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
   try {
-    // Use a more reliable import approach
-    const roommatesModule = await import("@/data/roommates");
+    // Use relative path for production compatibility
+    const roommatesModule = await import("../../../data/roommates");
     const roommates = roommatesModule.privateRoommates;
 
     if (!roommates || !Array.isArray(roommates)) {
@@ -29,12 +29,14 @@ export async function POST(request: NextRequest) {
     // Load roommates data if not already loaded
     if (privateRoommates.length === 0) {
       privateRoommates = await loadPrivateRoommates();
+      console.log(`Loaded ${privateRoommates.length} roommates for auth route`);
     }
 
     const { roommateId, password } = await request.json();
 
     // Check if private roommates data is available
     if (!privateRoommates || privateRoommates.length === 0) {
+      console.error("No roommates data available for auth");
       return NextResponse.json(
         { error: "Roommate data not configured" },
         { status: 503 }
@@ -45,6 +47,10 @@ export async function POST(request: NextRequest) {
     const roommate = privateRoommates.find((r) => r.id === roommateId);
 
     if (!roommate) {
+      console.error(`Roommate not found: ${roommateId}`);
+      console.log(
+        `Available roommates: ${privateRoommates.map((r) => r.id).join(", ")}`
+      );
       return NextResponse.json(
         { error: "Roommate not found" },
         { status: 404 }
@@ -58,10 +64,25 @@ export async function POST(request: NextRequest) {
     // Also handle the case where password might be formatted (digits only)
     const formattedPassword = password.replace(/\D/g, ""); // Remove non-digits
 
+    // Normalize all passwords for comparison (remove slashes and spaces)
+    const normalizedPassword = password.replace(/[/\s]/g, "");
+    const normalizedExpected = expectedPassword.replace(/[/\s]/g, "");
+
     const isValidPassword =
       password === expectedPassword ||
       password === expectedPasswordWithoutSlash ||
-      formattedPassword === expectedPasswordWithoutSlash;
+      formattedPassword === expectedPasswordWithoutSlash ||
+      normalizedPassword === normalizedExpected;
+
+    // Add detailed logging for debugging
+    console.log(`Auth attempt for ${roommate.name} (${roommateId}):`);
+    console.log(
+      `  Expected: ${expectedPassword} or ${expectedPasswordWithoutSlash}`
+    );
+    console.log(`  Received: ${password}`);
+    console.log(`  Formatted: ${formattedPassword}`);
+    console.log(`  Normalized: ${normalizedPassword} vs ${normalizedExpected}`);
+    console.log(`  Valid: ${isValidPassword}`);
 
     if (!isValidPassword) {
       return NextResponse.json(

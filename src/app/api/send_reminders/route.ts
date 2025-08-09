@@ -8,8 +8,8 @@ let privateRoommates: PrivateRoommate[] = [];
 // Function to load roommates data
 async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
   try {
-    // Use dynamic import for ES modules
-    const roommatesModule = await import("@/data/roommates");
+    // Use relative path for production compatibility
+    const roommatesModule = await import("../../../data/roommates");
     return roommatesModule.privateRoommates || [];
   } catch {
     console.warn(

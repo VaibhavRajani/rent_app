@@ -8,7 +8,25 @@ let privateRoommates: PrivateRoommate[] = [];
 // Function to load roommates data
 async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
   try {
-    // Use relative path for production compatibility
+    // First, try to load from environment variables (production)
+    if (process.env.ROOMMATES_DATA) {
+      try {
+        const roommatesData = JSON.parse(process.env.ROOMMATES_DATA);
+        if (Array.isArray(roommatesData)) {
+          console.log(
+            `Loaded ${roommatesData.length} roommates from environment variables`
+          );
+          return roommatesData;
+        }
+      } catch (error) {
+        console.error(
+          "Failed to parse ROOMMATES_DATA from environment:",
+          error
+        );
+      }
+    }
+
+    // Fallback to file system (development)
     const roommatesModule = await import("../../../data/roommates");
     return roommatesModule.privateRoommates || [];
   } catch {

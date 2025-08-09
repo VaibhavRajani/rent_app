@@ -1,28 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rent App
+
+A modern rent payment tracking application built with Next.js, TypeScript, and a comprehensive theme system.
+
+## Features
+
+- 🎨 **Theme System**: Comprehensive token-based design system with dark/light mode
+- 🔐 **Authentication**: Secure password-based authentication using birthdays
+- 💰 **Payment Tracking**: Track rent payments and amounts
+- 📧 **Email Reminders**: Automated rent reminder emails
+- 🧪 **Testing**: Jasmine-based test suite with automated CI/CD
+- 🚀 **Production Ready**: Optimized for Vercel deployment
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd rent_app
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables:
+
+```bash
+cp .env.example .env.local
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Required for Production (Vercel)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **ROOMMATES_DATA**: JSON string containing private roommate data
+   - This contains sensitive information (emails, birthdays) and should be kept private
+   - Set this in your Vercel dashboard under Settings > Environment Variables
+
+```bash
+# Example of ROOMMATES_DATA format:
+[
+  {
+    "email": "your-email@example.com",
+    "id": "roommate-1",
+    "name": "Example Name",
+    "amount": 500,
+    "venmoNote": "Rent payment - Example Name",
+    "image": "https://example.com/image.jpg",
+    "birthday": "29/11"
+  }
+]
+```
+
+2. **RESEND_API_KEY**: (Optional) API key for sending email reminders
+   - Only required if you want to use the email reminder feature
+
+### Setting up ROOMMATES_DATA for Vercel
+
+1. **Generate the data** (if you have the roommates.ts file):
+
+```bash
+# The JSON data is already provided in scripts/roommates-data.json
+cat scripts/roommates-data.json
+```
+
+2. **Copy the JSON output** and set it as the `ROOMMATES_DATA` environment variable in Vercel:
+   - Go to your Vercel project dashboard
+   - Navigate to Settings > Environment Variables
+   - Add `ROOMMATES_DATA` as the name
+   - Paste the JSON as the value (make sure it's all on one line)
+   - Select "Production" environment
+   - Save and redeploy
+
+## Private Data Setup
+
+The application separates public and private data for security:
+
+- **Public Data** (`src/data/publicRoommates.ts`): Safe to expose to clients (names, amounts, images)
+- **Private Data** (`src/data/roommates.ts`): Contains sensitive information (emails, birthdays)
+
+The private data file is excluded from Git via `.gitignore` and should be loaded via environment variables in production.
 
 ## Testing
 
-This project includes a comprehensive test suite using Jasmine. To run tests:
+Run tests using Jasmine:
 
 ```bash
 # Run all tests
@@ -32,101 +109,60 @@ npm test
 npm run test:watch
 ```
 
-Tests cover:
+### Test Coverage
 
-- Utility functions (`roommateUtils`, `passwordUtils`, `venmoUtils`)
-- Theme utilities
-- Authentication and data handling
-- Edge cases and error conditions
+- ✅ Utility functions (`roommateUtils`, `passwordUtils`, `venmoUtils`)
+- ✅ Theme utilities
+- ✅ Authentication logic
+- ✅ Data validation
 
 ## Automated Testing and Deployment
 
-This project uses GitHub Actions for automated testing and deployment. The workflow:
+The project uses GitHub Actions for CI/CD:
 
-1. **Runs on every push** to `main` or `master` branches
-2. **Runs on pull requests** to ensure code quality
-3. **Runs tests first** - deployment only proceeds if tests pass
-4. **Deploys to Vercel** automatically after successful tests
+1. **Tests run automatically** on every push and pull request
+2. **Deployment to Vercel** only occurs if all tests pass
+3. **Environment variables** are automatically set up for CI
 
-### Setup Requirements
+### GitHub Secrets Required
 
-To enable automated deployment, you need to set up GitHub Secrets in your repository:
+- `VERCEL_ORG_ID`: Your Vercel Organization ID
+- `VERCEL_PROJECT_ID`: Your Vercel Project ID
 
-1. Go to your GitHub repository → Settings → Secrets and variables → Actions
-2. Add the following secrets:
-   - `VERCEL_TOKEN`: Your Vercel authentication token
-   - `VERCEL_ORG_ID`: Your Vercel organization ID
-   - `VERCEL_PROJECT_ID`: Your Vercel project ID
+## Theme System
 
-### Getting Vercel Credentials
+The application uses a comprehensive token-based theme system:
 
-1. **VERCEL_TOKEN**:
+### Color Tokens
 
-   - Go to [Vercel Dashboard](https://vercel.com/account/tokens)
-   - Create a new token with appropriate permissions
+- **Base colors**: Primary, secondary, accent, neutral
+- **Semantic colors**: Success, warning, error, info
+- **Mode-aware**: Automatic dark/light mode support
 
-2. **VERCEL_ORG_ID** and **VERCEL_PROJECT_ID**:
-   - Run `npx vercel link` in your project directory
-   - The IDs will be added to your `.vercel/project.json` file
+### Usage
 
-### Quick Setup
-
-Run the setup script for guided setup:
-
-```bash
-./scripts/setup-vercel-secrets.sh
+```tsx
+// Use theme-aware classes
+<div className="theme-bg theme-text theme-border">
+  <button className="theme-primary">Submit</button>
+</div>
 ```
 
-### Verification
+## API Routes
 
-After setting up the secrets:
+- `GET /api/roommates` - Get all public roommate data
+- `GET /api/roommates/[id]` - Get specific roommate data
+- `POST /api/auth` - Authenticate roommate (requires birthday password)
+- `GET /api/send_reminders` - Send rent reminder emails
 
-1. **Make a test commit** and push to `main`/`master`
-2. **Check GitHub Actions** tab to see the workflow running
-3. **Verify the workflow**:
-   - ✅ Tests run and pass
-   - ✅ Linting passes
-   - ✅ Build succeeds
-   - ✅ Deployment to Vercel happens automatically
+## Contributing
 
-### Workflow Details
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
 
-The GitHub Actions workflow (`.github/workflows/test-and-deploy.yml`):
+## License
 
-- **Test Job**: Runs tests, linting, and builds the application
-- **Deploy Job**: Only runs if tests pass and branch is `main`/`master`
-- **Private Data Handling**: Automatically creates test data from template
-- **Error Handling**: Fails fast if any step doesn't pass
-
-## Private Data Setup
-
-This application uses private roommate data that is not tracked in Git for security reasons. To set up the private data:
-
-1. Copy the template file:
-
-   ```bash
-   cp src/data/roommates.ts.template src/data/roommates.ts
-   ```
-
-2. Edit `src/data/roommates.ts` with your actual roommate information:
-
-   - Replace `your-email@example.com` with the actual email
-   - Update names, amounts, Venmo notes, and profile images
-   - Set birthdays in `DD/MM` format (e.g., "29/11" for November 29th)
-
-3. The private data includes sensitive information like birthdays (used as passwords) and emails, so it's excluded from version control.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.

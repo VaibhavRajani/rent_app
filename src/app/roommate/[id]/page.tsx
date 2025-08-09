@@ -3,13 +3,14 @@ import RoommateDetail from "@/components/RoommateDetail";
 import { notFound } from "next/navigation";
 
 interface RoommatePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function RoommatePage({ params }: RoommatePageProps) {
-  const roommate = getRoommateById(params.id);
+export default async function RoommatePage({ params }: RoommatePageProps) {
+  const { id } = await params;
+  const roommate = getRoommateById(id);
 
   if (!roommate) {
     notFound();

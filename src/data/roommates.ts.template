@@ -1,0 +1,16 @@
+import { PrivateRoommate } from "@/types/roommate";
+
+// Private roommate data - this should only be used on the server side
+// Copy this file to roommates.ts and fill in the actual data
+export const privateRoommates: PrivateRoommate[] = [
+  {
+    email: "your-email@example.com",
+    id: "roommate-1",
+    name: "Example Name",
+    amount: 500,
+    venmoNote: "Rent payment - Example Name",
+    image: "https://example.com/image.jpg",
+    birthday: "DD/MM", // Format: DD/MM (e.g., "29/11" for November 29th)
+  },
+  // Add more roommates following the same structure
+]; 

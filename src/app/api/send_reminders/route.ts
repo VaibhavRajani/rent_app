@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { privateRoommates } from "@/data/roommates";
+
+// Try to import private roommates, but handle the case where the file doesn't exist
+let privateRoommates: any[] = [];
+try {
+  const roommatesModule = require("@/data/roommates");
+  privateRoommates = roommatesModule.privateRoommates || [];
+} catch (error) {
+  console.warn(
+    "Private roommates data not found. Please create src/data/roommates.ts from the template."
+  );
+}
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -9,6 +19,14 @@ const BASE_URL = "https://rent683.vercel.app/";
 
 export async function GET() {
   try {
+    // Check if private roommates data is available
+    if (!privateRoommates || privateRoommates.length === 0) {
+      return NextResponse.json(
+        { error: "Roommate data not configured" },
+        { status: 503 }
+      );
+    }
+
     const roommates = privateRoommates;
 
     for (const roommate of roommates) {

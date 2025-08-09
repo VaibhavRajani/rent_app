@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Private Data Setup
+
+This application uses private roommate data that is not tracked in Git for security reasons. To set up the private data:
+
+1. Copy the template file:
+
+   ```bash
+   cp src/data/roommates.ts.template src/data/roommates.ts
+   ```
+
+2. Edit `src/data/roommates.ts` with your actual roommate information:
+
+   - Replace `your-email@example.com` with the actual email
+   - Update names, amounts, Venmo notes, and profile images
+   - Set birthdays in `DD/MM` format (e.g., "29/11" for November 29th)
+
+3. The private data includes sensitive information like birthdays (used as passwords) and emails, so it's excluded from version control.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

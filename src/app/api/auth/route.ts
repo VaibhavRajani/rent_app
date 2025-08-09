@@ -1,9 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { privateRoommates } from "@/data/roommates";
+
+// Try to import private roommates, but handle the case where the file doesn't exist
+let privateRoommates: any[] = [];
+try {
+  const roommatesModule = require("@/data/roommates");
+  privateRoommates = roommatesModule.privateRoommates || [];
+} catch (error) {
+  console.warn(
+    "Private roommates data not found. Please create src/data/roommates.ts from the template."
+  );
+}
 
 export async function POST(request: NextRequest) {
   try {
     const { roommateId, password } = await request.json();
+
+    // Check if private roommates data is available
+    if (!privateRoommates || privateRoommates.length === 0) {
+      return NextResponse.json(
+        { error: "Roommate data not configured" },
+        { status: 503 }
+      );
+    }
 
     // Find the roommate
     const roommate = privateRoommates.find((r) => r.id === roommateId);

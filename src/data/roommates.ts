@@ -17,7 +17,7 @@ export const roommates: Roommate[] = [
     venmoNote: "Rent payment - Harsh Sangani",
     image:
       "https://media.licdn.com/dms/image/v2/D4E03AQF-kKSo-JNZ3w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1698623159224?e=1757548800&v=beta&t=EZy_U1W8s-sdCOhCLvxkadUg2odbL1F2gawYbz3MEIE",
-    birthday: "22/07", // July 22nd
+    birthday: "01/11", // November 1st
   },
   {
     id: "roommate-3",
@@ -26,7 +26,7 @@ export const roommates: Roommate[] = [
     venmoNote: "Rent payment - Ronak Shah",
     image:
       "https://media.licdn.com/dms/image/v2/D4E35AQFcLZ9O4rFxiw/profile-framedphoto-shrink_800_800/profile-framedphoto-shrink_800_800/0/1715291944707?e=1755320400&v=beta&t=N5xq29Vz58C_i8kxTuRXs3voIm0vYvkTfeoHmMrdZdI",
-    birthday: "08/11", // November 8th
+    birthday: "09/04", // April 9th
   },
   {
     id: "roommate-4",

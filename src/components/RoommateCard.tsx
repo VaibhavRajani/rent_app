@@ -15,12 +15,12 @@ export default function RoommateCard({ roommate }: RoommateCardProps) {
   const router = useRouter();
 
   const handleViewDetails = () => {
+    // always prompt
     setIsPasswordModalOpen(true);
   };
 
   const handlePasswordSuccess = () => {
     setIsPasswordModalOpen(false);
-    // Navigate to the roommate detail page using Next.js router
     router.push(`/roommate/${roommate.id}`);
   };
 

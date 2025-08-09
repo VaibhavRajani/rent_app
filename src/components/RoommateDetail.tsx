@@ -100,7 +100,7 @@ export default function RoommateDetail({ roommate }: RoommateDetailProps) {
                       Due Date
                     </p>
                     <p className="text-lg font-semibold text-slate-900 dark:text-white">
-                      1st of Month
+                      1st of Every Month
                     </p>
                   </div>
                   <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">

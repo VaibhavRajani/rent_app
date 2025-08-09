@@ -20,6 +20,84 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Testing
+
+This project includes a comprehensive test suite using Jasmine. To run tests:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+Tests cover:
+
+- Utility functions (`roommateUtils`, `passwordUtils`, `venmoUtils`)
+- Theme utilities
+- Authentication and data handling
+- Edge cases and error conditions
+
+## Automated Testing and Deployment
+
+This project uses GitHub Actions for automated testing and deployment. The workflow:
+
+1. **Runs on every push** to `main` or `master` branches
+2. **Runs on pull requests** to ensure code quality
+3. **Runs tests first** - deployment only proceeds if tests pass
+4. **Deploys to Vercel** automatically after successful tests
+
+### Setup Requirements
+
+To enable automated deployment, you need to set up GitHub Secrets in your repository:
+
+1. Go to your GitHub repository → Settings → Secrets and variables → Actions
+2. Add the following secrets:
+   - `VERCEL_TOKEN`: Your Vercel authentication token
+   - `VERCEL_ORG_ID`: Your Vercel organization ID
+   - `VERCEL_PROJECT_ID`: Your Vercel project ID
+
+### Getting Vercel Credentials
+
+1. **VERCEL_TOKEN**:
+
+   - Go to [Vercel Dashboard](https://vercel.com/account/tokens)
+   - Create a new token with appropriate permissions
+
+2. **VERCEL_ORG_ID** and **VERCEL_PROJECT_ID**:
+   - Run `npx vercel link` in your project directory
+   - The IDs will be added to your `.vercel/project.json` file
+
+### Quick Setup
+
+Run the setup script for guided setup:
+
+```bash
+./scripts/setup-vercel-secrets.sh
+```
+
+### Verification
+
+After setting up the secrets:
+
+1. **Make a test commit** and push to `main`/`master`
+2. **Check GitHub Actions** tab to see the workflow running
+3. **Verify the workflow**:
+   - ✅ Tests run and pass
+   - ✅ Linting passes
+   - ✅ Build succeeds
+   - ✅ Deployment to Vercel happens automatically
+
+### Workflow Details
+
+The GitHub Actions workflow (`.github/workflows/test-and-deploy.yml`):
+
+- **Test Job**: Runs tests, linting, and builds the application
+- **Deploy Job**: Only runs if tests pass and branch is `main`/`master`
+- **Private Data Handling**: Automatically creates test data from template
+- **Error Handling**: Fails fast if any step doesn't pass
+
 ## Private Data Setup
 
 This application uses private roommate data that is not tracked in Git for security reasons. To set up the private data:

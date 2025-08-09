@@ -1,0 +1,17 @@
+{
+    "spec_dir": "spec",
+    "spec_files": [
+        "**/*spec.ts"
+    ],
+    "helpers": [
+        "helpers/jasmine-ts-helper.js"
+    ],
+    "stopSpecOnExpectationFailure": false,
+    "random": false,
+    "seed": null,
+    "failFast": false,
+    "failSpecWithNoExpectations": false,
+    "oneFailurePerSpec": false,
+    "hideDisabled": false,
+    "reporter": []
+}

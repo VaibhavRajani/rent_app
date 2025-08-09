@@ -58,7 +58,7 @@ export default function PasswordModal({
           inputRef.current.focus();
         }
       }
-    } catch (error) {
+    } catch {
       setIsLoading(false);
       setError("Network error. Please try again.");
       setPassword("");

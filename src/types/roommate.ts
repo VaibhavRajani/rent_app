@@ -13,5 +13,5 @@ export interface PrivateRoommate extends PublicRoommate {
   birthday: string; // DD/MM format
 }
 
-// Full roommate data (for internal use)
-export interface Roommate extends PrivateRoommate {}
+// Alias for backward compatibility
+export type Roommate = PrivateRoommate;

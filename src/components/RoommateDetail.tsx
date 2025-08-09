@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { PublicRoommate } from "@/types/roommate";
 import VenmoButton from "./VenmoButton";
@@ -11,8 +10,6 @@ interface RoommateDetailProps {
 }
 
 export default function RoommateDetail({ roommate }: RoommateDetailProps) {
-  const router = useRouter();
-
   return (
     <div className="min-h-screen theme-bg py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

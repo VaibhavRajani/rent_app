@@ -1,18 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { PrivateRoommate } from "@/types/roommate";
 
 // Try to import private roommates, but handle the case where the file doesn't exist
-let privateRoommates: any[] = [];
-try {
-  const roommatesModule = require("@/data/roommates");
-  privateRoommates = roommatesModule.privateRoommates || [];
-} catch (error) {
-  console.warn(
-    "Private roommates data not found. Please create src/data/roommates.ts from the template."
-  );
+let privateRoommates: PrivateRoommate[] = [];
+
+// Function to load roommates data
+async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
+  try {
+    // Use dynamic import for ES modules
+    const roommatesModule = await import("@/data/roommates");
+    return roommatesModule.privateRoommates || [];
+  } catch {
+    console.warn(
+      "Private roommates data not found. Please create src/data/roommates.ts from the template."
+    );
+    return [];
+  }
 }
 
 export async function POST(request: NextRequest) {
   try {
+    // Load roommates data if not already loaded
+    if (privateRoommates.length === 0) {
+      privateRoommates = await loadPrivateRoommates();
+    }
+
     const { roommateId, password } = await request.json();
 
     // Check if private roommates data is available

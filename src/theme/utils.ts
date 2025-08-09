@@ -52,7 +52,7 @@ export function createThemeClass(
 ): string {
   const classes = [baseClass];
 
-  Object.entries(themeVariants).forEach(([mode, variant]) => {
+  Object.entries(themeVariants).forEach(([mode]) => {
     classes.push(`${baseClass}--${mode}`);
   });
 

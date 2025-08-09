@@ -1,15 +1,22 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import type { PrivateRoommate } from "@/types/roommate";
 
 // Try to import private roommates, but handle the case where the file doesn't exist
-let privateRoommates: any[] = [];
-try {
-  const roommatesModule = require("@/data/roommates");
-  privateRoommates = roommatesModule.privateRoommates || [];
-} catch (error) {
-  console.warn(
-    "Private roommates data not found. Please create src/data/roommates.ts from the template."
-  );
+let privateRoommates: PrivateRoommate[] = [];
+
+// Function to load roommates data
+async function loadPrivateRoommates(): Promise<PrivateRoommate[]> {
+  try {
+    // Use dynamic import for ES modules
+    const roommatesModule = await import("@/data/roommates");
+    return roommatesModule.privateRoommates || [];
+  } catch {
+    console.warn(
+      "Private roommates data not found. Please create src/data/roommates.ts from the template."
+    );
+    return [];
+  }
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -19,6 +26,11 @@ const BASE_URL = "https://rent683.vercel.app/";
 
 export async function GET() {
   try {
+    // Load roommates data if not already loaded
+    if (privateRoommates.length === 0) {
+      privateRoommates = await loadPrivateRoommates();
+    }
+
     // Check if private roommates data is available
     if (!privateRoommates || privateRoommates.length === 0) {
       return NextResponse.json(

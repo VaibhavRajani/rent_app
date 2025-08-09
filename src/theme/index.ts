@@ -47,9 +47,6 @@ export function getThemeValue(
 
   if (category.startsWith("semantic")) {
     // Handle semantic tokens
-    const semanticCategory = category
-      .replace("semantic", "")
-      .toLowerCase() as keyof typeof theme;
     const semanticTokens = theme[category as keyof typeof theme];
     return semanticTokens[token as keyof typeof semanticTokens];
   }

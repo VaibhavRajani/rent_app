@@ -47,14 +47,17 @@ export async function validatePasswordServerSide(
 }
 
 // Legacy function for backward compatibility (deprecated)
-export function validatePassword(roommate: any, password: string): boolean {
+export function validatePassword(
+  roommate: { birthday?: string },
+  password: string
+): boolean {
   console.warn(
     "validatePassword is deprecated. Use validatePasswordServerSide instead."
   );
   return roommate.birthday === password;
 }
 
-export function getPasswordHint(roommate: any): string {
+export function getPasswordHint(roommate: { birthday?: string }): string {
   return roommate.birthday
     ? `Your birthday: ${roommate.birthday}`
     : "DD/MM format";
